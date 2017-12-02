@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TabLayoutIndicator">
+        <attr name="tli_tabIndicatorColor" format="reference" />
+        <attr name="tli_tabIndicatorSelectedColor" format="reference" />
+        <attr name="tli_tabIndicatorType" format="enum">
+            <enum name="options" value="1" />
+            <enum name="instructions" value="2" />
+        </attr>
+        <attr name="tli_tabIndicatorContentType" format="enum">
+            <enum name="viewPager" value="1" />
+            <enum name="frameLayout" value="2" />
+        </attr>
+        <attr name="tli_tabSplitLineColor" format="reference" />
+        <attr name="tli_tabSplitLineHeight" format="reference" />
+        <attr name="tli_tabIndicatorWidth" format="dimension" />
+        <attr name="tli_tabIndicatorHeight" format="dimension" />
+        <attr name="tli_tabIndicatorSpacing" format="dimension" />
+        <attr name="tli_tabItemTextColor" format="reference" />
+        <attr name="tli_tabItemTextSelectedColor" format="reference" />
+        <attr name="tli_tabItemTextSize" format="reference" />
+        <attr name="tli_tabLayoutBackgroundColor" format="reference" />
+        <attr name="tli_tabItemTextBlod" format="boolean" />
+        <attr name="tli_tabLayoutTopSplitLineColor" format="reference" />
+        <attr name="tli_tabLayoutBottomSplitLineColor" format="reference" />
+        <attr name="tli_tabIndicatorIsViewFromObject" format="boolean" />
+    </declare-styleable>
+</resources>

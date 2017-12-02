@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <declare-styleable name="SearchBoxView">
+        <attr name="searchHint" format="string" />
+        <attr name="searchHintTextColor" format="reference" />
+        <attr name="searchEnabled" format="boolean"></attr>
+        <attr name="searchBackgroundResource" format="reference" />
+        <attr name="searchIcon" format="reference" />
+    </declare-styleable>
+
+</resources>

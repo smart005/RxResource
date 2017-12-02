@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HeaderTabsViewLayout">
+        <attr name="htvp_topOffset" format="dimension"/>
+    </declare-styleable>
+</resources>
