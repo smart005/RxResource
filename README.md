@@ -6,6 +6,7 @@ Android项目开发框架——RxResource资源包
 [javadoc文档](http://htmlpreview.github.io/?https://github.com/smart005/RxResource/blob/master/javadoc/index.html)
 
 ### 使用文档
+* [对象跳转工具类](/docs/object_jump_utils.md)
 * [TabLayoutindicator选择指示器](/docs/tab_layout_indicator.md)
 * [视差列表控件——头部自定义布局+tab+ListView ScrollView RecyclerView等](/docs/parallax_list.md)
 * [XRefreshRecyclerView[引用SmartRefreshLayout,自带的特性也可直接使用]](/docs/xrecyclerview.md)
