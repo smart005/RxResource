@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 14
-        versionCode 124
-        versionName "1.0.124"
+        versionCode 126
+        versionName "1.0.126"
     }
 }
 
@@ -21,5 +21,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:design:27.0.1'
     compile 'com.cloud:tbs:3.5.0'
-    compile 'com.cloud:rxcore-release:1.0.88@aar'
+    compile 'com.cloud:rxcore-release:1.0.95@aar'
 }
+
+apply from: 'bintray.gradle'

@@ -17,12 +17,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.target.Target;
-import com.cloud.core.RxCoreUtils;
-import com.cloud.core.config.ResConfig;
-import com.cloud.core.config.RxConfig;
+import com.cloud.core.configs.ConfigItem;
+import com.cloud.core.configs.RxCoreConfigItems;
 import com.cloud.core.enums.ImgRuleType;
+import com.cloud.core.enums.ResFolderType;
 import com.cloud.core.glides.FormatDataModel;
 import com.cloud.core.logger.Logger;
+import com.cloud.core.utils.ResUtils;
+import com.cloud.resources.configs.BaseRConfig;
 
 import java.io.File;
 
@@ -35,6 +37,8 @@ import java.io.File;
  * @ModifyContent:
  */
 public class GlideProcess {
+
+    private static int defImgBg = 0;
 
     static class GlideTransProperties {
         public Context context = null;
@@ -51,24 +55,6 @@ public class GlideProcess {
         public int preLoadWidth = 0;
         public int preLoadHeight = 0;
         public ImgRuleType ruleType = ImgRuleType.None;
-    }
-
-    private static ResConfig config = null;
-    private static RxConfig rxConfig = null;
-
-    private static RxConfig getRxConfig(Context context) {
-        if (rxConfig == null) {
-            rxConfig = RxCoreUtils.getInstance().getConfig(context);
-        }
-        return rxConfig;
-    }
-
-    private static ResConfig getConfig(Context context) {
-        RxConfig rxConfig = getRxConfig(context);
-        if (config == null) {
-            config = rxConfig.getResConfig();
-        }
-        return config;
     }
 
     private static DrawableTypeRequest getRequestManager(Context context,
@@ -147,16 +133,23 @@ public class GlideProcess {
         return loadBitmapConfig(request, 42, 42, defImg);
     }
 
-    private static DrawableRequestBuilder loadConfig(Context context,
-                                                     DrawableTypeRequest request) {
-        ResConfig config = getConfig(context);
-        return loadConfig(request, config.getDefBg());
+    private static int getDefBackgroundResId(Context context) {
+        if (defImgBg == 0) {
+            RxCoreConfigItems configItems = BaseRConfig.getInstance().getConfigItems(context);
+            ConfigItem defaultBackgroundImage = configItems.getDefaultBackgroundImage();
+            ResFolderType folderType = ResFolderType.getResFolderType(defaultBackgroundImage.getType());
+            return ResUtils.getResource(context, defaultBackgroundImage.getName(), folderType);
+        } else {
+            return defImgBg;
+        }
     }
 
-    private static BitmapRequestBuilder loadBitmapConfig(Context context,
-                                                         BitmapTypeRequest request) {
-        ResConfig config = getConfig(context);
-        return loadBitmapConfig(request, config.getDefBg());
+    private static DrawableRequestBuilder loadConfig(Context context, DrawableTypeRequest request) {
+        return loadConfig(request, getDefBackgroundResId(context));
+    }
+
+    private static BitmapRequestBuilder loadBitmapConfig(Context context, BitmapTypeRequest request) {
+        return loadBitmapConfig(request, getDefBackgroundResId(context));
     }
 
     public static void load(Context context, ImgRuleType ruleType, String url, int defImg, int imgWidth, int imgHeight, int imgCorners, ImageView imageView) {
@@ -179,8 +172,14 @@ public class GlideProcess {
                             int imgHeight,
                             int imgCorners,
                             ImageView imageView) {
-        ResConfig config = getConfig(context);
-        load(context, ruleType, url, config.getDefBg(), imgWidth, imgHeight, imgCorners, imageView);
+        load(context,
+                ruleType,
+                url,
+                getDefBackgroundResId(context),
+                imgWidth,
+                imgHeight,
+                imgCorners,
+                imageView);
     }
 
     public static void load(Context context, File file, int defImg, ImageView imageView) {
@@ -195,16 +194,14 @@ public class GlideProcess {
     public static void load(Context context,
                             File file,
                             ImageView imageView) {
-        ResConfig config = getConfig(context);
-        load(context, file, config.getDefBg(), imageView);
+        load(context, file, getDefBackgroundResId(context), imageView);
     }
 
     public static void load(Context context, Uri uri, Target target) {
-        ResConfig config = getConfig(context);
         GlideTransProperties transProperties = new GlideTransProperties();
         transProperties.context = context;
         transProperties.uri = uri;
-        transProperties.defImg = config.getDefBg();
+        transProperties.defImg = getDefBackgroundResId(context);
         transProperties.crossFade = 300;
         transProperties.target = target;
         loadImageUriTargetProcess(context, transProperties);
@@ -214,13 +211,13 @@ public class GlideProcess {
                                   ImgRuleType ruleType,
                                   String url,
                                   int radius,
+                                  int defImage,
                                   ImageView imageView) {
         try {
-            ResConfig config = getConfig(context);
             DrawableRequestBuilder drawableRequestBuilder = loadConfig(Glide.with(context).load(url),
                     2 * radius,
                     2 * radius,
-                    config.getDefBg(),
+                    defImage,
                     200);
             drawableRequestBuilder.transform(new GlideCircleTransform(context));
             drawableRequestBuilder.into(imageView);
@@ -240,7 +237,7 @@ public class GlideProcess {
                     transProperties.defImg).
                     into(transProperties.imageView);
         } catch (Exception e) {
-            Logger.L.error("load image process error:", e);
+            Logger.L.error(e);
         }
     }
 
@@ -248,21 +245,20 @@ public class GlideProcess {
         try {
             loadConfig(Glide.with(transProperties.context).load(transProperties.file), 42, 42, transProperties.defImg, 300).into(transProperties.imageView);
         } catch (Exception e) {
-            Logger.L.error("load image process error:", e);
+            Logger.L.error(e);
         }
     }
 
     private static void loadImageUriTargetProcess(Context context,
                                                   GlideTransProperties transProperties) {
         try {
-            ResConfig config = getConfig(context);
             loadConfig(Glide.with(transProperties.context).load(transProperties.uri),
                     transProperties.preLoadWidth,
                     transProperties.preLoadHeight,
-                    config.getDefBg(),
+                    getDefBackgroundResId(context),
                     transProperties.crossFade).into(transProperties.target);
         } catch (Exception e) {
-            Logger.L.error("load image process error:", e);
+            Logger.L.error(e);
         }
     }
 
