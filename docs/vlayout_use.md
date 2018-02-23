@@ -184,3 +184,12 @@ vLayoutUtils.notifyDataSetChanged(mList, "hlist", true);
 //对单条数据进行通知
 vLayoutUtils.notifyDataSetChanged(mList.get(0), "hlist5");
 ```
+###### ItemViewHolder格式
+```java
+public class ItemViewHolder extends BaseItemViewHolder {
+    public ItemViewHolder() {
+        //这里必须要设置当前视图
+        setContentView(view);
+    }
+}
+```
