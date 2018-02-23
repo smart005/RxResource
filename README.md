@@ -15,3 +15,5 @@ Android项目开发框架——RxResource资源包
 * [图片(预览)选择编辑控件](/docs/picture_select_editor.md)
 * [滑动加载或销毁视图](/docs/silding_load_finish_view.md)
 * [H5Webview控件使用和示例](/docs/h5webview_api_demo.md)
+
+* [VLayout布局/数据格式/使用](/docs/vlayout_use.md)
