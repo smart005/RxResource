@@ -68,7 +68,7 @@ private OnSubViewListener<BaseViewHolder<ItemViewHolder>, ItemViewHolder, AppBea
     }
 
     @Override
-    public void onHSViewSpace(SpaceItem spaceItem) {
+    public void onHSViewSpace(String subKey,SpaceItem spaceItem) {
     	//横向滚动视图每个item间距及属性设置
         Rect outRect = spaceItem.getOutRect();
         outRect.left = PixelUtils.dip2px(VLayoutActivity.this, 8);
