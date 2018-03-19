@@ -66,3 +66,18 @@ fsvView.bind("初始选择sku属性", "第一个参数分隔符")
 
 示例:fsvView.bind("9.7寸,金色,32G,12", ",")
 ```
+
+###### 控件属性
+| 方法属性                                                         | 描述                                                     |
+|------------------------------------------------------------------|----------------------------------------------------------|
+| setSkuList(LinkedHashMap<SkuSepecItem, List<SkuItem>> skuList)   | 设置所有sku属性(即api中返回全部的sepec-sku列表)          |
+| setEffectiveSkuList(List<String> effectiveSkuList, String split) | 设置有效的sku;参数1每一项数据如：全网通,樱粉金,6加64G,12 |
+| setSkuItemLayoutId(int skuItemLayoutId)                          | 构建每种规格的布局文件id                                 |
+| bind(String effectiveSku, String split)                          | 绑定并初始化sku数据                                      |
+| boolean isCheckAllSepecSku()                                     | 检查是否有未选择规格的sku                                |
+| LinkedHashMap<String, SkuItem> getCheckSkus()                    | 获取已选择sku列表                                        |
+| String getChechedSku()                                           | 获取已选择sku(以分隔符分隔)                              |
+
+
+
+
