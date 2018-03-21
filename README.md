@@ -16,8 +16,9 @@ Android项目开发框架——RxResource资源包
 	* [1.2.1版本之前(包括)流式标签使用](/docs/tag_list.md)
 	* [1.2.2及之后版本标签使用](/docs/tag_list_122.md)
 	* [sku标签使用](/docs/sku_tag.md)
-* [竖直方向自定义流程视图,类似物流进度](/docs/vertical_flow_track.md)
-* [图片(预览)选择编辑控件](/docs/picture_select_editor.md)
+* 自定义流程视图
+	* [纵向](/docs/vertical_flow_track.md)
+	* [横向]
 * [滑动加载或销毁视图](/docs/silding_load_finish_view.md)
 * [H5Webview控件使用和示例](/docs/h5webview_api_demo.md)
 
