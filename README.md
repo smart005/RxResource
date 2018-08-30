@@ -9,6 +9,7 @@ Android项目开发框架——RxResource资源包
 * [对象跳转工具类](/docs/object_jump_utils.md)
 * [TabLayoutindicator选择指示器](/docs/tab_layout_indicator.md)
 * [视差列表控件——头部自定义布局+tab+ListView ScrollView RecyclerView等](/docs/parallax_list.md)
+* [线性类视图(继承LinearLayout),横向纵向拖拽工具类](/docs/linear_view_drager.md)
 * 列表
 	* [XRefreshRecyclerView](/docs/xrecyclerview.md)
 	* [XRefreshIndexBarListView](/docs/xrefresh_recyclerview_indexbar_list.md)
